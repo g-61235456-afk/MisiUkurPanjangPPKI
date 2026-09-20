@@ -9,6 +9,8 @@
 .app{max-width:720px;margin:auto;padding:14px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:900}.tools{display:flex;gap:6px}
 .mini{border:2px solid #b8d7ee;background:white;border-radius:12px;padding:8px 10px;font-weight:900}
+.volumePanel{display:flex;align-items:center;gap:10px;background:white;border:2px solid #cae3f5;border-radius:16px;padding:10px 12px;margin:10px 0}
+.volumePanel label{font-weight:900;white-space:nowrap}.volumePanel input[type=range]{flex:1;min-width:0;accent-color:#1976d2;height:36px}.volumeValue{min-width:52px;text-align:right;font-weight:900;color:#0d47a1}
 .card{background:white;border:2px solid #cae3f5;border-radius:22px;padding:18px;margin:12px 0;box-shadow:0 8px 26px #1976d218}
 .center{text-align:center}h1{font-size:29px;margin:8px 0}.lead{font-size:18px;line-height:1.45}
 .btn{width:100%;border:0;border-radius:16px;padding:15px;margin:8px 0;font-size:19px;font-weight:900;min-height:56px}
@@ -30,6 +32,7 @@
 <body>
 <div class="app">
 <div class="top"><div>⏱️ Misi Unit Masa</div><div class="tools"><button class="mini" onclick="speakNow()">🔊</button><button class="mini" id="musicBtn" onclick="toggleMusic()">🎵</button><button class="mini" onclick="document.body.classList.toggle('big')">A+</button></div></div>
+<div class="volumePanel"><label for="volumeSlider">🔉 Muzik</label><input id="volumeSlider" type="range" min="0" max="100" step="5" value="70" oninput="setMusicVolume(this.value)" aria-label="Laraskan volume muzik latar"><span id="volumeValue" class="volumeValue">70%</span></div>
 <div id="screen"></div>
 <div class="footer">Matematik Tahun 6 PPKI • Saat, Minit dan Jam</div>
 </div>
@@ -51,7 +54,7 @@ const questions=[
 {q:'Satu aktiviti berlangsung selama 2 minit. Berapa saat?',v:'2 minit = ? saat',a:['60 saat','100 saat','120 saat','200 saat'],c:2,h:'2 × 60 = 120 saat.',s:'Masalah harian'},
 {q:'Kelas berlangsung 1 jam 30 minit. Berapa minit semuanya?',v:'60 minit + 30 minit',a:['60 minit','90 minit','100 minit','130 minit'],c:1,h:'1 jam = 60 minit. 60 + 30 = 90 minit.',s:'Masalah harian'}
 ];
-let i=0,score=0,done=false,studentName=localStorage.getItem('unitMasaName')||'',musicOn=false,audioCtx=null,musicTimer=null,musicStep=0,skills={};
+let i=0,score=0,done=false,studentName=localStorage.getItem('unitMasaName')||'',musicOn=false,audioCtx=null,masterGain=null,musicTimer=null,musicStep=0,skills={},musicVolume=Math.max(0,Math.min(1,parseFloat(localStorage.getItem('unitMasaVolume')||'0.70')));
 
 function safe(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function home(){
@@ -104,9 +107,22 @@ function speakNow(){
  if(!('speechSynthesis' in window))return;speechSynthesis.cancel();
  const u=new SpeechSynthesisUtterance(document.getElementById('screen').innerText);u.lang='ms-MY';u.rate=.82;speechSynthesis.speak(u);
 }
-function ensureAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)()}
+function ensureAudio(){
+ if(!audioCtx){
+  audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  masterGain=audioCtx.createGain();
+  masterGain.gain.value=musicVolume;
+  masterGain.connect(audioCtx.destination);
+ }
+}
+function setMusicVolume(v){
+ const n=Math.max(0,Math.min(100,Number(v)||0));musicVolume=n/100;localStorage.setItem('unitMasaVolume',String(musicVolume));
+ const out=document.getElementById('volumeValue');if(out)out.innerText=n+'%';
+ const slider=document.getElementById('volumeSlider');if(slider&&Number(slider.value)!==n)slider.value=n;
+ if(audioCtx&&masterGain){masterGain.gain.setTargetAtTime(musicVolume,audioCtx.currentTime,.03)}
+}
 function playTone(freq,dur,vol,type){
- if(!musicOn)return;ensureAudio();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type||'sine';o.frequency.value=freq;g.gain.setValueAtTime(vol,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+dur);
+ if(!musicOn)return;ensureAudio();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type||'sine';o.frequency.value=freq;g.gain.setValueAtTime(vol,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur);o.connect(g);g.connect(masterGain);o.start();o.stop(audioCtx.currentTime+dur);
 }
 function startMusic(){
  if(musicOn)return;musicOn=true;document.getElementById('musicBtn').innerText='🎵';ensureAudio();if(audioCtx.state==='suspended')audioCtx.resume();
@@ -116,6 +132,7 @@ function startMusic(){
 }
 function toggleMusic(){if(musicOn){musicOn=false;clearTimeout(musicTimer);document.getElementById('musicBtn').innerText='🔇'}else startMusic()}
 function goodSound(){ensureAudio();const old=musicOn;musicOn=true;playTone(523,.13,.060,'triangle');setTimeout(()=>playTone(659,.16,.055,'triangle'),110);setTimeout(()=>playTone(784,.18,.050,'triangle'),220);musicOn=old}
+setMusicVolume(Math.round(musicVolume*100));
 home();
 </script>
 </body></html>
