@@ -1,71 +1,121 @@
 <!doctype html>
 <html lang="ms">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Misi Ukur Panjang</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Misi Unit Masa PPKI</title>
 <style>
-:root{--blue:#0d47a1;--blue2:#1976d2;--yellow:#ffd54f;--green:#2e7d32;--red:#c62828;--ink:#17324d;--paper:#f6fbff;--card:#fff;--muted:#5d6b78}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans",sans-serif;background:linear-gradient(180deg,#dff3ff,#fdfefe);color:var(--ink);min-height:100vh}
-button{font:inherit} .app{max-width:720px;margin:0 auto;min-height:100vh;padding:16px 16px 36px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.brand{font-weight:800;font-size:18px}.badge{background:#fff;border:2px solid #b8dcf6;border-radius:999px;padding:7px 11px;font-weight:800}
-.card{background:var(--card);border:2px solid #cde8f9;border-radius:24px;padding:22px;box-shadow:0 10px 30px rgba(13,71,161,.10);margin:12px 0}.center{text-align:center}.hero{font-size:58px;margin:4px}.h1{font-size:30px;line-height:1.08;margin:8px 0 10px}.h2{font-size:23px;margin:4px 0 12px}.lead{font-size:18px;line-height:1.45;margin:8px 0;color:#38546e}.small{font-size:14px;color:var(--muted);line-height:1.4}.btn{display:block;width:100%;border:0;border-radius:18px;padding:16px 18px;margin:10px 0;font-size:20px;font-weight:800;min-height:58px;box-shadow:0 5px 0 rgba(0,0,0,.10)}.btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.10)}.primary{background:var(--blue2);color:white}.secondary{background:var(--yellow);color:#3d3200}.soft{background:#e8f4fd;color:#0d47a1}.danger{background:#ffebee;color:#9b1c1c}.choice{background:#fff;border:3px solid #9acbeb;color:var(--ink);text-align:left;box-shadow:none}.choice:hover,.choice:focus{background:#edf8ff}.correct{background:#e8f5e9!important;border-color:#43a047!important}.wrong{background:#ffebee!important;border-color:#e53935!important}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid .btn{margin:0}.progress{height:14px;background:#e4edf4;border-radius:999px;overflow:hidden;margin:10px 0}.bar{height:100%;background:linear-gradient(90deg,#42a5f5,#1565c0);width:0;transition:width .3s}.status{display:flex;justify-content:space-between;font-weight:800;font-size:16px;gap:8px}.question{font-size:25px;line-height:1.35;font-weight:800;margin:14px 0}.visual{min-height:120px;border:2px dashed #b6d8ee;border-radius:18px;background:#f9fdff;display:flex;align-items:center;justify-content:center;padding:14px;margin:12px 0;font-size:58px}.feedback{border-radius:16px;padding:13px 15px;margin:12px 0;font-size:18px;font-weight:700;line-height:1.35}.ok{background:#e8f5e9;color:#1b5e20;border:2px solid #a5d6a7}.no{background:#fff3e0;color:#8a4b00;border:2px solid #ffcc80}.hide{display:none!important}
-.ruler{position:relative;width:92%;height:90px;border-bottom:7px solid #263238;margin:4px auto 8px;background:linear-gradient(90deg,#fff8cc,#ffe082);border-radius:10px 10px 3px 3px;overflow:hidden}.ticks{position:absolute;left:5%;right:5%;bottom:7px;height:62px;display:flex;justify-content:space-between;align-items:flex-end}.tick{height:29px;border-left:3px solid #263238;position:relative}.tick.major{height:48px}.tick span{position:absolute;bottom:49px;left:-7px;font-size:13px;font-weight:800}.object-line{position:absolute;left:5%;bottom:17px;height:14px;border-radius:99px;background:#e53935;box-shadow:0 0 0 3px white}.unit-chip{display:inline-block;padding:9px 14px;border-radius:999px;background:#e3f2fd;border:2px solid #90caf9;font-weight:900;margin:4px;font-size:20px}.stars{font-size:32px;letter-spacing:3px}.resultBox{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{background:#f4faff;border:2px solid #d2eafb;border-radius:16px;padding:14px}.metric strong{display:block;font-size:25px}.skill{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #dfeaf2;padding:10px 0;font-size:16px}.foot{text-align:center;color:#627586;font-size:12px;margin-top:18px}.access{display:flex;gap:8px}.mini{border:2px solid #b8d7ec;border-radius:14px;background:white;padding:8px 10px;font-weight:800}.note{background:#fff9d9;border:2px solid #f1d75e;padding:12px;border-radius:15px;font-size:15px;line-height:1.4}
-@media(max-width:420px){.h1{font-size:26px}.question{font-size:22px}.btn{font-size:18px}.visual{font-size:48px}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#e8f5ff,#fff7df);color:#243447;min-height:100vh}
+.app{max-width:720px;margin:auto;padding:14px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:900}.tools{display:flex;gap:6px}
+.mini{border:2px solid #b8d7ee;background:white;border-radius:12px;padding:8px 10px;font-weight:900}
+.card{background:white;border:2px solid #cae3f5;border-radius:22px;padding:18px;margin:12px 0;box-shadow:0 8px 26px #1976d218}
+.center{text-align:center}h1{font-size:29px;margin:8px 0}.lead{font-size:18px;line-height:1.45}
+.btn{width:100%;border:0;border-radius:16px;padding:15px;margin:8px 0;font-size:19px;font-weight:900;min-height:56px}
+.primary{background:#1976d2;color:white}.secondary{background:#ffca28;color:#382d00}.soft{background:#e8f4fd;color:#0d47a1}
+.choice{background:white;border:3px solid #9fcdf0;color:#243447;text-align:left;box-shadow:none}.ok{background:#e8f5e9!important;border-color:#43a047!important}.bad{background:#ffebee!important;border-color:#ef5350!important}
+.namebox{width:100%;padding:15px 16px;border:3px solid #9fcdf0;border-radius:16px;font-size:20px;font-weight:800;margin:10px 0;outline:none}.namebox:focus{border-color:#1976d2}
+.err{color:#b71c1c;font-weight:800;min-height:22px}.chip{display:inline-block;background:#eaf5ff;border:2px solid #9fcdf0;border-radius:999px;padding:8px 12px;margin:4px;font-weight:900}
+.note{background:#fff9d8;border:2px solid #efd45a;border-radius:15px;padding:13px;margin:10px 0;line-height:1.55;text-align:left}
+.example{background:#edf8ee;border:2px solid #a5d6a7;border-radius:15px;padding:13px;margin:10px 0;line-height:1.5}
+.rule{font-size:22px;font-weight:900;text-align:center;padding:12px;border-radius:15px;background:#f2f8fc;margin:8px 0}
+.q{font-size:23px;font-weight:900;line-height:1.35;margin:14px 0}.status{display:flex;justify-content:space-between;gap:8px;font-weight:900}
+.progress{height:13px;background:#e4edf4;border-radius:99px;overflow:hidden;margin:9px 0}.bar{height:100%;background:#42a5f5}
+.feedback{border-radius:14px;padding:12px;margin:10px 0;font-weight:800;line-height:1.4}.green{background:#e8f5e9}.yellow{background:#fff3e0}
+.bigNum{font-size:42px;font-weight:900;text-align:center;background:#f7fbff;border:2px dashed #90caf9;border-radius:18px;padding:18px;margin:12px 0}
+.report{background:#f7fbff;border:2px solid #b9dcf5;border-radius:18px;padding:14px;text-align:left}.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #e4edf4}.row:last-child{border-bottom:0}
+.achievement{font-size:22px;font-weight:900;color:#0d47a1}.stars{font-size:31px}.footer{text-align:center;font-size:12px;color:#687586;margin:16px 0}.big{font-size:118%}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="topbar">
-    <div class="brand">📏 Misi Ukur Panjang</div>
-    <div class="access"><button class="mini" onclick="speakCurrent()">🔊 Baca</button><button class="mini" onclick="toggleLarge()">A+</button></div>
-  </div>
-  <div id="screen"></div>
-  <div class="foot">Matematik Pendidikan Khas Tahun 6 • Fokus: ukuran panjang • Boleh dimainkan tanpa internet</div>
+<div class="top"><div>⏱️ Misi Unit Masa</div><div class="tools"><button class="mini" onclick="speakNow()">🔊</button><button class="mini" id="musicBtn" onclick="toggleMusic()">🎵</button><button class="mini" onclick="document.body.classList.toggle('big')">A+</button></div></div>
+<div id="screen"></div>
+<div class="footer">Matematik Tahun 6 PPKI • Saat, Minit dan Jam</div>
 </div>
 <script>
-const levels=[
- {name:'Tahap 1: Kenal Unit',skill:'Mengenal unit panjang',icon:'🧠',questions:[
-  {q:'Unit manakah paling sesuai untuk mengukur ketebalan syiling?',v:'🪙',a:['mm','cm','m','km'],c:0,h:'Benda yang sangat kecil biasanya diukur dalam milimeter (mm).'},
-  {q:'Unit manakah sesuai untuk mengukur panjang sebatang pensel?',v:'✏️',a:['km','m','cm','mm'],c:2,h:'Pensel sesuai diukur dalam sentimeter (cm).'},
-  {q:'Unit manakah sesuai untuk mengukur panjang bilik darjah?',v:'🏫',a:['mm','cm','m','km'],c:2,h:'Bilik darjah sesuai diukur dalam meter (m).'},
-  {q:'Unit manakah sesuai untuk jarak antara dua bandar?',v:'🛣️',a:['mm','cm','m','km'],c:3,h:'Jarak yang jauh sesuai diukur dalam kilometer (km).'}]},
- {name:'Tahap 2: Pilih Ukuran Sesuai',skill:'Memilih ukuran yang munasabah',icon:'🎯',questions:[
-  {q:'Panjang sebuah pemadam lebih munasabah ialah ...',v:'🧽',a:['5 cm','5 m','5 km','5 mm'],c:0,h:'Pemadam biasanya beberapa sentimeter panjang.'},
-  {q:'Panjang sebuah meja murid lebih munasabah ialah ...',v:'🪑',a:['120 km','120 cm','120 mm','120 m'],c:1,h:'Meja murid kira-kira 1 meter lebih, jadi 120 cm munasabah.'},
-  {q:'Jarak dari sekolah ke pekan lebih munasabah ialah ...',v:'🏫 ➜ 🏘️',a:['8 mm','8 cm','8 m','8 km'],c:3,h:'Jarak perjalanan biasanya menggunakan kilometer.'},
-  {q:'Lebar kuku jari lebih munasabah ialah ...',v:'☝️',a:['15 mm','15 m','15 km','150 m'],c:0,h:'Kuku kecil, jadi milimeter ialah unit yang sesuai.'}]},
- {name:'Tahap 3: Banding Panjang',skill:'Membandingkan panjang',icon:'⚖️',questions:[
-  {q:'Yang manakah lebih panjang?',v:'📏',a:['80 cm','1 m'],c:1,h:'1 m = 100 cm, jadi 1 m lebih panjang daripada 80 cm.'},
-  {q:'Yang manakah lebih pendek?',v:'✂️',a:['15 cm','200 mm'],c:0,h:'200 mm = 20 cm. Jadi 15 cm lebih pendek.'},
-  {q:'Pilih ukuran yang sama panjang.',v:'🔗',a:['1 m dan 100 cm','1 m dan 10 cm','1 km dan 100 m','1 cm dan 100 mm'],c:0,h:'1 meter bersamaan 100 sentimeter.'},
-  {q:'Yang manakah jaraknya lebih jauh?',v:'🚶',a:['900 m','1 km'],c:1,h:'1 km = 1000 m, jadi 1 km lebih jauh.'}]},
- {name:'Tahap 4: Baca Pembaris',skill:'Membaca ukuran objek',icon:'📐',questions:[
-  {q:'Objek merah bermula pada 0 cm dan berakhir pada 4 cm. Berapakah panjangnya?',r:4,a:['2 cm','3 cm','4 cm','5 cm'],c:2,h:'Baca dari 0 hingga hujung objek: 4 cm.'},
-  {q:'Objek merah bermula pada 0 cm dan berakhir pada 7 cm. Berapakah panjangnya?',r:7,a:['5 cm','6 cm','7 cm','8 cm'],c:2,h:'Hujung objek berada pada tanda 7 cm.'},
-  {q:'Sebuah pensel bermula pada 2 cm dan berakhir pada 8 cm. Panjang pensel ialah ...',v:'2 cm ├──────✏️──────┤ 8 cm',a:['6 cm','8 cm','10 cm','4 cm'],c:0,h:'8 cm − 2 cm = 6 cm.'},
-  {q:'Jika objek panjangnya 50 mm, berapa sentimeter?',v:'📎',a:['1 cm','5 cm','10 cm','50 cm'],c:1,h:'10 mm = 1 cm, jadi 50 mm = 5 cm.'}]},
- {name:'Tahap 5: Cabaran Harian',skill:'Aplikasi dalam kehidupan harian',icon:'🏆',questions:[
-  {q:'Cikgu mahu mengukur panjang papan putih. Alat manakah paling sesuai?',v:'🧑‍🏫 📋',a:['Termometer','Pita ukur','Jam','Penimbang'],c:1,h:'Pita ukur digunakan untuk mengukur panjang objek yang besar.'},
-  {q:'Rina berjalan 1 km. Amir berjalan 600 m. Siapa berjalan lebih jauh?',v:'🚶‍♀️  vs  🚶‍♂️',a:['Rina','Amir','Sama jauh'],c:0,h:'1 km = 1000 m. 1000 m lebih jauh daripada 600 m.'},
-  {q:'Tali A = 35 cm. Tali B = 28 cm. Berapa beza panjang?',v:'🧵',a:['7 cm','8 cm','53 cm','63 cm'],c:0,h:'35 − 28 = 7 cm.'},
-  {q:'Sebuah meja panjangnya 1 m 20 cm. Dalam sentimeter ialah ...',v:'🪑',a:['20 cm','100 cm','120 cm','1020 cm'],c:2,h:'1 m = 100 cm. 100 cm + 20 cm = 120 cm.'}]}
+const questions=[
+{q:'1 minit bersamaan berapa saat?',v:'1 minit = ? saat',a:['30 saat','60 saat','100 saat','120 saat'],c:1,h:'Ingat: 1 minit = 60 saat.',s:'Minit kepada saat'},
+{q:'2 minit bersamaan berapa saat?',v:'2 × 60 saat',a:['60 saat','90 saat','120 saat','200 saat'],c:2,h:'2 × 60 = 120 saat.',s:'Minit kepada saat'},
+{q:'3 minit bersamaan berapa saat?',v:'3 × 60 saat',a:['120 saat','180 saat','240 saat','300 saat'],c:1,h:'3 × 60 = 180 saat.',s:'Minit kepada saat'},
+{q:'60 saat bersamaan berapa minit?',v:'60 saat = ? minit',a:['1 minit','2 minit','6 minit','10 minit'],c:0,h:'60 saat = 1 minit.',s:'Saat kepada minit'},
+{q:'120 saat bersamaan berapa minit?',v:'120 ÷ 60',a:['1 minit','2 minit','3 minit','4 minit'],c:1,h:'120 ÷ 60 = 2 minit.',s:'Saat kepada minit'},
+{q:'1 jam bersamaan berapa minit?',v:'1 jam = ? minit',a:['30 minit','60 minit','100 minit','120 minit'],c:1,h:'1 jam = 60 minit.',s:'Jam kepada minit'},
+{q:'2 jam bersamaan berapa minit?',v:'2 × 60 minit',a:['60 minit','90 minit','120 minit','200 minit'],c:2,h:'2 × 60 = 120 minit.',s:'Jam kepada minit'},
+{q:'3 jam bersamaan berapa minit?',v:'3 × 60 minit',a:['120 minit','150 minit','180 minit','300 minit'],c:2,h:'3 × 60 = 180 minit.',s:'Jam kepada minit'},
+{q:'60 minit bersamaan berapa jam?',v:'60 minit = ? jam',a:['1 jam','2 jam','6 jam','10 jam'],c:0,h:'60 minit = 1 jam.',s:'Minit kepada jam'},
+{q:'120 minit bersamaan berapa jam?',v:'120 ÷ 60',a:['1 jam','2 jam','3 jam','4 jam'],c:1,h:'120 ÷ 60 = 2 jam.',s:'Minit kepada jam'},
+{q:'1 jam bersamaan berapa saat?',v:'60 minit × 60 saat',a:['600 saat','1,200 saat','3,600 saat','6,000 saat'],c:2,h:'1 jam = 60 minit. 60 × 60 = 3,600 saat.',s:'Jam dan saat'},
+{q:'3,600 saat bersamaan berapa jam?',v:'3,600 saat = ? jam',a:['1 jam','2 jam','3 jam','6 jam'],c:0,h:'3,600 saat = 1 jam.',s:'Jam dan saat'},
+{q:'Aina belajar 30 minit pada pagi dan 30 minit pada petang. Jumlah masa ialah...',v:'30 minit + 30 minit',a:['30 minit','45 minit','1 jam','2 jam'],c:2,h:'30 + 30 = 60 minit = 1 jam.',s:'Masalah harian'},
+{q:'Satu aktiviti berlangsung selama 2 minit. Berapa saat?',v:'2 minit = ? saat',a:['60 saat','100 saat','120 saat','200 saat'],c:2,h:'2 × 60 = 120 saat.',s:'Masalah harian'},
+{q:'Kelas berlangsung 1 jam 30 minit. Berapa minit semuanya?',v:'60 minit + 30 minit',a:['60 minit','90 minit','100 minit','130 minit'],c:1,h:'1 jam = 60 minit. 60 + 30 = 90 minit.',s:'Masalah harian'}
 ];
-let level=0,qi=0,score=0,attempted=0,answered=false,skillScores={};
-function save(){localStorage.setItem('ukurPanjangProgress',JSON.stringify({level,qi,score,attempted,skillScores}));}
-function reset(){level=0;qi=0;score=0;attempted=0;answered=false;skillScores={};localStorage.removeItem('ukurPanjangProgress');showHome();}
-function showHome(){document.getElementById('screen').innerHTML=`<div class="card center"><div class="hero">📏🌟</div><div class="h1">Misi Ukur Panjang</div><p class="lead">Game Matematik Pendidikan Khas Tahun 6</p><div><span class="unit-chip">mm</span><span class="unit-chip">cm</span><span class="unit-chip">m</span><span class="unit-chip">km</span></div><p class="lead">Belajar langkah demi langkah. Jawab soalan, kumpul bintang dan cuba lagi jika tersalah.</p><button class="btn primary" onclick="startGame()">▶️ MULA BERMAIN</button><button class="btn soft" onclick="showLearn()">📚 BELAJAR DULU</button><div class="note">🎓 Fokus kemahiran: mengenal unit, memilih unit sesuai, membanding panjang, membaca ukuran dan menyelesaikan situasi harian mudah.</div></div>`;}
-function showLearn(){document.getElementById('screen').innerHTML=`<div class="card"><div class="h2">📚 Nota Mudah</div><div class="metric"><strong>mm — milimeter</strong><span class="small">Untuk benda sangat kecil, contohnya ketebalan syiling.</span></div><div class="metric"><strong>cm — sentimeter</strong><span class="small">Untuk objek kecil, contohnya pensel dan buku.</span></div><div class="metric"><strong>m — meter</strong><span class="small">Untuk objek lebih besar, contohnya bilik dan papan putih.</span></div><div class="metric"><strong>km — kilometer</strong><span class="small">Untuk jarak jauh, contohnya sekolah ke pekan.</span></div><div class="note"><b>Ingat:</b><br>10 mm = 1 cm<br>100 cm = 1 m<br>1000 m = 1 km</div><button class="btn primary" onclick="startGame()">Saya Sudah Bersedia 👍</button><button class="btn soft" onclick="showHome()">⬅ Kembali</button></div>`;}
-function startGame(){level=0;qi=0;score=0;attempted=0;answered=false;skillScores={};renderQuestion();}
-function renderRuler(n){let ticks='';for(let i=0;i<=10;i++)ticks+=`<div class="tick ${i%5===0?'major':''}"><span>${i}</span></div>`;return `<div class="ruler"><div class="ticks">${ticks}</div><div class="object-line" style="width:${n*9}%"></div></div><div class="center small">cm</div>`;}
-function renderQuestion(){answered=false;const L=levels[level],q=L.questions[qi];const total=levels.reduce((s,l)=>s+l.questions.length,0);const done=levels.slice(0,level).reduce((s,l)=>s+l.questions.length,0)+qi;let visual=q.r?renderRuler(q.r):`<div class="visual">${q.v||L.icon}</div>`;document.getElementById('screen').innerHTML=`<div class="card"><div class="status"><span>${L.name}</span><span>⭐ ${score}</span></div><div class="progress"><div class="bar" style="width:${Math.round(done/total*100)}%"></div></div><div class="small">Soalan ${qi+1} daripada ${L.questions.length}</div><div class="question">${q.q}</div>${visual}<div id="choices">${q.a.map((x,i)=>`<button class="btn choice" onclick="answer(${i},this)">${String.fromCharCode(65+i)}. ${x}</button>`).join('')}</div><div id="feedback"></div></div>`;save();}
-function answer(i,btn){if(answered)return;attempted++;const L=levels[level],q=L.questions[qi],all=[...document.querySelectorAll('.choice')];if(i===q.c){answered=true;score++;skillScores[L.skill]=(skillScores[L.skill]||0)+1;btn.classList.add('correct');all[q.c].classList.add('correct');document.getElementById('feedback').innerHTML=`<div class="feedback ok">✅ Betul! Hebat!<br><span class="small">${q.h}</span></div><button class="btn primary" onclick="nextQ()">Seterusnya ➜</button>`;}else{btn.classList.add('wrong');document.getElementById('feedback').innerHTML=`<div class="feedback no">💡 Cuba lagi.<br><span class="small">Petunjuk: ${q.h}</span></div>`;if(navigator.vibrate)navigator.vibrate(100);}save();}
-function nextQ(){const L=levels[level];qi++;if(qi>=L.questions.length){qi=0;level++;if(level>=levels.length)return showResult();return showLevelComplete();}renderQuestion();}
-function showLevelComplete(){const next=levels[level];document.getElementById('screen').innerHTML=`<div class="card center"><div class="hero">🌟</div><div class="h1">Tahap Selesai!</div><p class="lead">Bagus. Mari teruskan ke <b>${next.name}</b>.</p><div class="stars">⭐⭐⭐</div><button class="btn primary" onclick="renderQuestion()">Teruskan ➜</button></div>`;}
-function showResult(){const total=levels.reduce((s,l)=>s+l.questions.length,0);const pct=Math.round(score/total*100);let msg=pct>=85?'Cemerlang!':pct>=65?'Bagus! Teruskan latihan.':'Tidak mengapa. Cuba semula dan belajar langkah demi langkah.';let stars=pct>=85?'⭐⭐⭐':pct>=65?'⭐⭐':'⭐';let skills=levels.map(l=>{let got=skillScores[l.skill]||0;return `<div class="skill"><span>${l.skill}</span><b>${got}/${l.questions.length}</b></div>`}).join('');document.getElementById('screen').innerHTML=`<div class="card center"><div class="hero">🏆</div><div class="h1">Misi Tamat!</div><div class="stars">${stars}</div><p class="lead">${msg}</p><div class="resultBox"><div class="metric"><span>Skor</span><strong>${score}/${total}</strong></div><div class="metric"><span>Peratus</span><strong>${pct}%</strong></div></div><div class="card" style="box-shadow:none;text-align:left"><div class="h2">📋 Ringkasan Kemahiran</div>${skills}</div><button class="btn primary" onclick="reset()">🔁 Main Semula</button><button class="btn soft" onclick="showLearn()">📚 Ulang Nota</button></div>`;localStorage.setItem('lastResult',JSON.stringify({date:new Date().toISOString(),score,total,pct,skillScores}));}
-function speakCurrent(){let txt=document.getElementById('screen').innerText.replace(/⭐/g,' bintang ');if('speechSynthesis'in window){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(txt);u.lang='ms-MY';u.rate=.86;speechSynthesis.speak(u);}}
-function toggleLarge(){document.body.style.fontSize=document.body.style.fontSize?'':'118%';}
-showHome();
+let i=0,score=0,done=false,studentName=localStorage.getItem('unitMasaName')||'',musicOn=false,audioCtx=null,musicTimer=null,musicStep=0,skills={};
+
+function safe(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function home(){
+ document.getElementById('screen').innerHTML=`<div class="card center"><div style="font-size:62px">⏱️🕒⭐</div><h1>Misi Saat, Minit & Jam</h1><p class="lead">Game mudah untuk belajar menukar unit masa.</p><div><span class="chip">SAAT</span><span class="chip">MINIT</span><span class="chip">JAM</span></div><div style="text-align:left;margin-top:14px"><b>👤 Nama Murid</b><input id="name" class="namebox" maxlength="40" placeholder="Taip nama murid" value="${safe(studentName)}"><div id="err" class="err"></div></div><button class="btn primary" onclick="begin()">▶️ MULA BERMAIN</button><button class="btn secondary" onclick="notes()">📚 NOTA & PANDUAN</button><div class="note"><b>15 soalan mudah.</b> Jawapan salah boleh cuba semula. Tekan 🔊 untuk dengar teks dan 🎵 untuk hidup/matikan muzik.</div></div>`;
+}
+function notes(){
+ document.getElementById('screen').innerHTML=`<div class="card"><h1>📚 Nota & Panduan</h1>
+ <div class="rule">60 saat = 1 minit</div><div class="rule">60 minit = 1 jam</div><div class="rule">1 jam = 3,600 saat</div>
+ <div class="note"><b>➡️ Tukar unit BESAR kepada unit KECIL: DARAB</b><br>minit → saat: darab 60<br>jam → minit: darab 60</div>
+ <div class="example"><b>Contoh 1:</b><br>2 minit = 2 × 60 = <b>120 saat</b></div>
+ <div class="example"><b>Contoh 2:</b><br>3 jam = 3 × 60 = <b>180 minit</b></div>
+ <div class="note"><b>⬅️ Tukar unit KECIL kepada unit BESAR: BAHAGI</b><br>saat → minit: bahagi 60<br>minit → jam: bahagi 60</div>
+ <div class="example"><b>Contoh 3:</b><br>120 saat = 120 ÷ 60 = <b>2 minit</b></div>
+ <div class="example"><b>Contoh 4:</b><br>120 minit = 120 ÷ 60 = <b>2 jam</b></div>
+ <div class="note"><b>Tip mudah:</b><br>Kalau pergi ke unit yang lebih kecil → <b>DARAB 60</b>.<br>Kalau pergi ke unit yang lebih besar → <b>BAHAGI 60</b>.</div>
+ <button class="btn primary" onclick="home()">👍 Saya Sudah Faham</button></div>`;
+}
+function begin(){
+ const el=document.getElementById('name'),n=el?el.value.trim():'';
+ if(!n){document.getElementById('err').innerText='Sila isi nama murid dahulu.';el.focus();return}
+ studentName=n;localStorage.setItem('unitMasaName',studentName);start();
+}
+function start(){i=0;score=0;done=false;skills={};startMusic();render()}
+function render(){
+ done=false;const q=questions[i],pct=Math.round(i/questions.length*100);
+ document.getElementById('screen').innerHTML=`<div class="card"><div class="status"><span>👤 ${safe(studentName)}</span><span>⭐ ${score}</span></div><div class="status" style="margin-top:6px"><span>Soalan ${i+1}/${questions.length}</span><span>Markah ${score}/${questions.length}</span></div><div class="progress"><div class="bar" style="width:${pct}%"></div></div><div class="q">${q.q}</div><div class="bigNum">${q.v}</div><div>${q.a.map((x,k)=>`<button class="btn choice" onclick="answer(${k},this)">${String.fromCharCode(65+k)}. ${x}</button>`).join('')}</div><div id="fb"></div></div>`;
+}
+function answer(k,b){
+ if(done)return;const q=questions[i];
+ if(k===q.c){
+  done=true;score++;skills[q.s]=(skills[q.s]||0)+1;b.classList.add('ok');goodSound();
+  document.getElementById('fb').innerHTML=`<div class="feedback green">✅ Betul! Bagus!<br>${q.h}</div><button class="btn primary" onclick="next()">Seterusnya ➜</button>`;
+ }else{
+  b.classList.add('bad');if(navigator.vibrate)navigator.vibrate(80);
+  document.getElementById('fb').innerHTML=`<div class="feedback yellow">💡 Cuba lagi.<br>${q.h}</div>`;
+ }
+}
+function next(){i++;if(i>=questions.length){result();return}render()}
+function result(){
+ const pct=Math.round(score/questions.length*100);
+ const stars=pct>=85?'⭐⭐⭐':pct>=60?'⭐⭐':'⭐';
+ const level=pct>=85?'Cemerlang':pct>=60?'Baik':'Perlu Bimbingan';
+ const msg=pct>=85?'Tahniah! Murid sudah sangat baik menukar unit masa.':pct>=60?'Bagus! Teruskan latihan supaya lebih yakin.':'Ulang nota dan cuba semula secara perlahan-lahan.';
+ const cats=['Minit kepada saat','Saat kepada minit','Jam kepada minit','Minit kepada jam','Jam dan saat','Masalah harian'];
+ let rows='';cats.forEach(s=>{const total=questions.filter(q=>q.s===s).length;rows+=`<div class="row"><span>${s}</span><b>${skills[s]||0}/${total}</b></div>`});
+ localStorage.setItem('unitMasaLastResult',JSON.stringify({name:studentName,score,total:questions.length,percent:pct,achievement:level,date:new Date().toISOString()}));
+ document.getElementById('screen').innerHTML=`<div class="card center"><div style="font-size:62px">🏆</div><h1>Keputusan Murid</h1><div class="stars">${stars}</div><div class="report"><div class="row"><span>👤 Nama</span><b>${safe(studentName)}</b></div><div class="row"><span>✅ Markah</span><b>${score} / ${questions.length}</b></div><div class="row"><span>📊 Peratus</span><b>${pct}%</b></div><div class="row"><span>🏅 Pencapaian</span><span class="achievement">${level}</span></div></div><p class="lead">${msg}</p><div class="card" style="text-align:left;box-shadow:none"><b>Ringkasan Kemahiran</b>${rows}</div><button class="btn primary" onclick="start()">🔁 Main Semula</button><button class="btn soft" onclick="home()">👤 Tukar Nama Murid</button><button class="btn secondary" onclick="notes()">📚 Ulang Nota</button></div>`;
+}
+function speakNow(){
+ if(!('speechSynthesis' in window))return;speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(document.getElementById('screen').innerText);u.lang='ms-MY';u.rate=.82;speechSynthesis.speak(u);
+}
+function ensureAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)()}
+function playTone(freq,dur,vol,type){
+ if(!musicOn)return;ensureAudio();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type||'sine';o.frequency.value=freq;g.gain.setValueAtTime(vol,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+dur);
+}
+function startMusic(){
+ if(musicOn)return;musicOn=true;document.getElementById('musicBtn').innerText='🎵';ensureAudio();if(audioCtx.state==='suspended')audioCtx.resume();
+ const melody=[262,330,392,523,392,330,294,349,440,587,440,349];musicStep=0;
+ function tick(){if(!musicOn)return;const f=melody[musicStep%melody.length];playTone(f,.42,.050,'sine');playTone(f/2,.42,.025,'triangle');setTimeout(()=>{if(musicOn)playTone(f*1.5,.16,.018,'sine')},180);musicStep++;musicTimer=setTimeout(tick,760)}
+ tick();
+}
+function toggleMusic(){if(musicOn){musicOn=false;clearTimeout(musicTimer);document.getElementById('musicBtn').innerText='🔇'}else startMusic()}
+function goodSound(){ensureAudio();const old=musicOn;musicOn=true;playTone(523,.13,.060,'triangle');setTimeout(()=>playTone(659,.16,.055,'triangle'),110);setTimeout(()=>playTone(784,.18,.050,'triangle'),220);musicOn=old}
+home();
 </script>
-</body>
-</html>
+</body></html>
