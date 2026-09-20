@@ -26,7 +26,16 @@
 .feedback{border-radius:14px;padding:12px;margin:10px 0;font-weight:800;line-height:1.4}.green{background:#e8f5e9}.yellow{background:#fff3e0}
 .bigNum{font-size:42px;font-weight:900;text-align:center;background:#f7fbff;border:2px dashed #90caf9;border-radius:18px;padding:18px;margin:12px 0}
 .report{background:#f7fbff;border:2px solid #b9dcf5;border-radius:18px;padding:14px;text-align:left}.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #e4edf4}.row:last-child{border-bottom:0}
-.achievement{font-size:22px;font-weight:900;color:#0d47a1}.stars{font-size:31px}.footer{text-align:center;font-size:12px;color:#687586;margin:16px 0}.big{font-size:118%}
+.achievement{font-size:22px;font-weight:900;color:#0d47a1}.stars{font-size:31px}.infoGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.infoCard{background:#eef8ff;border:2px solid #90caf9;border-radius:17px;padding:15px;text-align:center;font-size:20px;font-weight:900;line-height:1.35}
+.infoCard .big{display:block;font-size:42px;margin-bottom:5px}
+.legendMini{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.legendMini span{background:#f4f8fb;border:2px solid #d2e5f3;border-radius:999px;padding:7px 10px;font-weight:800}
+.flowWrap{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0}
+.flowBox{background:#1976d2;color:white;border-radius:14px;padding:12px 16px;font-size:20px;font-weight:900;min-width:82px;text-align:center}.arrow{font-size:30px;font-weight:900;color:#f57c00}
+.exampleGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:12px 0}
+.stepCard{background:#f1f8e9;border:2px solid #aed581;border-radius:16px;padding:13px;line-height:1.5}.stepNo{display:inline-block;background:#558b2f;color:white;border-radius:999px;padding:4px 9px;font-weight:900;margin-bottom:7px}
+.memobox{background:#fff3e0;border:3px solid #ffb74d;border-radius:18px;padding:14px;margin:12px 0;font-size:18px;line-height:1.5}
+.footer{text-align:center;font-size:12px;color:#687586;margin:16px 0}.big{font-size:118%}
 </style>
 </head>
 <body>
@@ -61,15 +70,26 @@ function home(){
  document.getElementById('screen').innerHTML=`<div class="card center"><div style="font-size:62px">⏱️🕒⭐</div><h1>Misi Saat, Minit & Jam</h1><p class="lead">Game mudah untuk belajar menukar unit masa.</p><div><span class="chip">SAAT</span><span class="chip">MINIT</span><span class="chip">JAM</span></div><div style="text-align:left;margin-top:14px"><b>👤 Nama Murid</b><input id="name" class="namebox" maxlength="40" placeholder="Taip nama murid" value="${safe(studentName)}"><div id="err" class="err"></div></div><button class="btn primary" onclick="begin()">▶️ MULA BERMAIN</button><button class="btn secondary" onclick="notes()">📚 NOTA & PANDUAN</button><div class="note"><b>15 soalan mudah.</b> Jawapan salah boleh cuba semula. Tekan 🔊 untuk dengar teks dan 🎵 untuk hidup/matikan muzik.</div></div>`;
 }
 function notes(){
- document.getElementById('screen').innerHTML=`<div class="card"><h1>📚 Nota & Panduan</h1>
- <div class="rule">60 saat = 1 minit</div><div class="rule">60 minit = 1 jam</div><div class="rule">1 jam = 3,600 saat</div>
- <div class="note"><b>➡️ Tukar unit BESAR kepada unit KECIL: DARAB</b><br>minit → saat: darab 60<br>jam → minit: darab 60</div>
- <div class="example"><b>Contoh 1:</b><br>2 minit = 2 × 60 = <b>120 saat</b></div>
- <div class="example"><b>Contoh 2:</b><br>3 jam = 3 × 60 = <b>180 minit</b></div>
- <div class="note"><b>⬅️ Tukar unit KECIL kepada unit BESAR: BAHAGI</b><br>saat → minit: bahagi 60<br>minit → jam: bahagi 60</div>
- <div class="example"><b>Contoh 3:</b><br>120 saat = 120 ÷ 60 = <b>2 minit</b></div>
- <div class="example"><b>Contoh 4:</b><br>120 minit = 120 ÷ 60 = <b>2 jam</b></div>
- <div class="note"><b>Tip mudah:</b><br>Kalau pergi ke unit yang lebih kecil → <b>DARAB 60</b>.<br>Kalau pergi ke unit yang lebih besar → <b>BAHAGI 60</b>.</div>
+ document.getElementById('screen').innerHTML=`<div class="card"><h1>📚 Nota & Panduan Bergrafik</h1>
+ <div class="legendMini"><span>⏱️ Saat</span><span>🕒 Minit</span><span>🕘 Jam</span><span>✖️ Darab 60</span><span>➗ Bahagi 60</span></div>
+ <div class="infoGrid">
+   <div class="infoCard"><span class="big">⏱️</span>60 saat<br>= 1 minit</div>
+   <div class="infoCard"><span class="big">🕒</span>60 minit<br>= 1 jam</div>
+   <div class="infoCard"><span class="big">🕘</span>1 jam<br>= 3,600 saat</div>
+ </div>
+ <div class="memobox"><b>💡 Cara ingat cepat</b><br>Dari unit <b>besar ke kecil</b> → <b>DARAB 60</b>.<br>Dari unit <b>kecil ke besar</b> → <b>BAHAGI 60</b>.</div>
+ <div class="flowWrap"><div class="flowBox">JAM</div><div class="arrow">→</div><div class="flowBox">MINIT</div><div class="arrow">→</div><div class="flowBox">SAAT</div></div>
+ <div class="note"><b>🔽 Bergerak ke unit lebih kecil</b><br>Jam → Minit → Saat<br><b>Operasi: DARAB 60</b></div>
+ <div class="flowWrap"><div class="flowBox">SAAT</div><div class="arrow">→</div><div class="flowBox">MINIT</div><div class="arrow">→</div><div class="flowBox">JAM</div></div>
+ <div class="note"><b>🔼 Bergerak ke unit lebih besar</b><br>Saat → Minit → Jam<br><b>Operasi: BAHAGI 60</b></div>
+ <div class="exampleGrid">
+   <div class="stepCard"><div class="stepNo">Contoh 1</div><b>2 minit → saat</b><br>2 × 60 = <b>120 saat</b></div>
+   <div class="stepCard"><div class="stepNo">Contoh 2</div><b>3 jam → minit</b><br>3 × 60 = <b>180 minit</b></div>
+   <div class="stepCard"><div class="stepNo">Contoh 3</div><b>120 saat → minit</b><br>120 ÷ 60 = <b>2 minit</b></div>
+   <div class="stepCard"><div class="stepNo">Contoh 4</div><b>120 minit → jam</b><br>120 ÷ 60 = <b>2 jam</b></div>
+ </div>
+ <div class="example"><b>📌 4 langkah mudah</b><br>1. Lihat unit asal.<br>2. Lihat unit jawapan.<br>3. Ke unit lebih kecil → darab 60.<br>4. Ke unit lebih besar → bahagi 60.</div>
+ <div class="note"><b>🎯 Contoh harian</b><br>30 minit + 30 minit = 60 minit = <b>1 jam</b><br>1 jam 30 minit = 60 + 30 = <b>90 minit</b></div>
  <button class="btn primary" onclick="home()">👍 Saya Sudah Faham</button></div>`;
 }
 function begin(){
